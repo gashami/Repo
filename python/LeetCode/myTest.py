@@ -6,8 +6,6 @@ for i, num in enumerate(numtest):
     numToIndex[num] = i
     print(f'{numToIndex} ')
 
-
-
 def threesum(num: list[int]) ->list[int]:
     num.sort()
     print(num)

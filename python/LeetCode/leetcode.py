@@ -65,7 +65,7 @@ class LeeCode:
                     while nums[l]==nums[r] and l<r:
                         l+=1
         return res
-
+    '''
     def threeSum(self, nums):
        nums.sort()
        result = []
@@ -76,8 +76,10 @@ class LeeCode:
            r = len(nums) -1
            while l < r:
                sum = nums[i] + nums[l] + nums[r]
-               if sum < 0:      l += 1
-               elif sum > 0:    r -= 1
+               if sum < 0:
+                   l += 1
+               elif sum > 0:
+                   r -= 1
                else:
                    result.append([nums[i], nums[l], nums[r]])
                    while l <len(nums) -1 and nums[l] == nums[l+1]: l +=1
@@ -85,6 +87,7 @@ class LeeCode:
                    l +=1
                    r -=1
        return result
+    '''
     def letterCombinations1(self,digits):
         if len(digits) == 0:
             return []
@@ -111,6 +114,30 @@ class LeeCode:
         backtrack(0, [])
         return combinations
          '''
+
+        '''Moore's Voting Algorithms
+          Given an integer array of length of N, Check if there exist an integer which occures more than floor of (N/2) times
+          if there is no such element print - THIRE IS NO MAJORITY ELEMENT'''
+
+    def majorityElement(self, nums, n):
+        major_ele, count =nums[0], 1
+        for i in range(1, n):
+            if (nums[i] == major_ele):
+                count += 1
+            else:
+                count -= 1
+            if (count == 0):
+                major_ele = nums[i]
+                count = 1
+        #return nums[major_ele]
+        count = 0
+        for i in nums:
+            if i == major_ele:
+                count += 1
+        if count > n//2:
+            print(f'MAJORITY ELEMENT: {major_ele}')
+        else:
+            print(f'THERE IS NO MAJORITY ELEMENT')
     def letterCombinations(self, digit):
         if not digit:
             return
@@ -187,14 +214,17 @@ def main():
     lc = LeeCode()
     #print(lc.sumTwo(num_list, target))
     #lc.rotateImag(matrix1)
-    lc.threeSum(matrix1)
-    print(matrix1)
+    #lc.threeSum(matrix1)
+    #print(matrix1)
     print(lc.twosum(num_list, target))
 
     print(lc.reverseint(-123456789))
 
     num = [-1,0,1,2,-1,-4, 3, -1, -1]
     #print(lc.threeSum(num))
+    arr = [2, 2, 3, 2, 4, 2, 5]
+    n = len(arr)
+    lc.majorityElement(arr, n)
 
     #print(len(lc.letterCombinations1('12')))
 if __name__ == '__main__':
